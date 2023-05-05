@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block headerTitle %}
+	<div class="header header__title">
+		<h1>{{user.first_name}}
+			{{user.last_name}}
+			({{user.id}})</h1>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<form action="/users/update?id={{user.id}}" method="POST">
+		<input type="text" name="id" value="{{user.id}}" hidden>
+
+		<div class="wrap">
+			<div class="wrap__field">
+				<div class="wrap__field__item">
+					<img class="ion-icon" src="../assets/svg/person-circle-outline.svg" alt="first-name">
+					<label for="first_name">First name :</label>
+				</div>
+				<input type="text" name="first_name" data-id="{{user.id}}" value="{{user.first_name}}">
+			</div>
+			<div class="wrap__field">
+				<div class="wrap__field__item">
+					<img class="ion-icon" src="../assets/svg/person-circle-outline.svg" alt="last-name">
+					<label for="last_name">Last name :</label>
+				</div>
+				<input type="text" name="last_name" data-id="{{user.id}}" value="{{user.last_name}}">
+			</div>
+		</div>
+		<div class="wrap">
+			<div class="wrap__field">
+				<div class="wrap__field__item">
+					<img class="ion-icon" src="../assets/svg/mail-outline.svg" alt="email">
+					<label for="email">Email :</label>
+				</div>
+				<input type="text" name="email" data-id="{{user.id}}" value="{{user.email}}">
+			</div>
+			<div class="wrap__field">
+				<div class="wrap__field__item">
+					<img class="ion-icon" src="../assets/svg/card-outline.svg" alt="credits">
+					<label for="credits">Credits :</label>
+				</div>
+				<input type="number" name="credits" data-id="{{user.id}}" value="{{user.credits}}">
+			</div>
+		</div>
+		<div class="wrap">
+			<button class="wrap__delete" type="submit"><img class="ion-icon" src="../assets/svg/trash-outline.svg" alt="delete"/></button>
+			<button class="wrap__validate" type="submit">Update</button>
+		</div>
+	</form>
+{% endblock %}

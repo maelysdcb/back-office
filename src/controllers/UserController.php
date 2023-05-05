@@ -5,7 +5,8 @@ namespace src\controllers;
 use core\BaseController;
 use src\models\User;
 
-class UserController extends BaseController {
+class UserController extends BaseController
+{
 
     private $model;
 
@@ -15,8 +16,9 @@ class UserController extends BaseController {
         $this->model = new User();
     }
 
-    public function displayUsers() {
-        $title="Users";
+    public function displayUsers()
+    {
+        $title = "Users";
         $button = "Add a user";
         $users = $this->model->getAll();
         $this->render('users/users.html.twig', [
@@ -24,5 +26,18 @@ class UserController extends BaseController {
             'button' => $button,
             'users' => $users
         ]);
+    }
+
+    public function displayUser()
+    {
+        $userInfo = $this->model->getOne($_GET['id']);
+        $this->render('users/update.html.twig', [
+            'user' => $userInfo
+        ]);
+    }
+    public function updateUser()
+    {
+        $updateUser = $this->model->updateAllFields(intval($_GET['id']), $_POST);
+        header("Location:/users/update?id=" . $_GET['id']);
     }
 }

@@ -6,7 +6,7 @@ abstract class BaseModel
 {
     private $host = 'localhost', $db_name = 'back_office', $username = 'root', $password = '';
     private $_connexion;
-    public $table, $id;
+    protected $table, $id, $data = [];
 
     public function getConnection()
     {
@@ -20,12 +20,13 @@ abstract class BaseModel
         }
     }
 
-    public function getOne()
+    public function getOne($id)
     {
-        $sql = "SELECT * FROM " . $this->table . " WHERE id=" . $this->id;
+        $sql = "SELECT * FROM " . $this->table . " WHERE id=:id ";
         $query = $this->_connexion->prepare($sql);
+        $query->bindValue(":id", $id);
         $query->execute();
-        return $query->fetch();
+        return $query->fetch(\PDO::FETCH_OBJ);
     }
 
     public function getAll()
@@ -34,5 +35,34 @@ abstract class BaseModel
         $query = $this->_connexion->prepare($sql);
         $query->execute();
         return $query->fetchAll(\PDO::FETCH_OBJ);
+    }
+
+
+    public function updateAllFields($id, $data)
+    {
+        $sql = "UPDATE " . $this->table . " SET ";
+        $setStatements = [];
+        foreach ($data as $column => $value) {
+            $setStatements[] = $column . " = :" . $column;
+        }
+        $sql .= implode(", ", $setStatements);
+        $sql .= " WHERE id=$id";
+
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(":id", $id);
+        foreach ($data as $column => $value) {
+            $query->bindValue(":" . $column, $value);
+        }
+
+        echo $sql;
+
+        $query->execute();
+    }
+
+    public function deleteUser($id) {
+        $sql = "DELETE FROM " . $this->table . " WHERE id=:id";
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(":id", $id);
+        $query->execute();
     }
 }

@@ -178,7 +178,7 @@ body {
   color: #FAFAFA;
 }
 .app-container .nav__sidebar__items .active {
-  background-color: #00C39A;
+  background-color: #1AB76C;
 }
 
 .app-content {
@@ -201,10 +201,10 @@ body {
   color: #FAFAFA;
   font-weight: 600;
   font-size: 1em;
-  background-color: #00C39A;
+  background-color: #1AB76C;
   width: 170px;
   height: 47px;
-  border-radius: 2em;
+  border-radius: 7px;
   border: none;
   outline: none;
   transition: transform 0.25s ease-in-out;
@@ -305,7 +305,7 @@ body {
 }
 
 .green {
-  background: #00C39A;
+  background: #1AB76C;
 }
 
 .grid__dashboard {
@@ -369,6 +369,65 @@ body {
 }
 .grid__dashboard #yellow2 {
   background: #F8FD99;
+}
+
+/* MODIFY PAGE */
+form {
+  background-color: #28282D;
+  width: 100%;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3em 5em;
+  color: #FAFAFA;
+  border-radius: 1em;
+}
+form .wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+form .wrap__field__item {
+  padding: 1em 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+}
+form .wrap input {
+  outline: none;
+  padding: 1em;
+  color: #FAFAFA;
+  background-color: #202024;
+  border: 1px solid rgba(250, 250, 250, 0.2);
+  width: 380px;
+  height: 45px;
+  border-radius: 5px;
+}
+form .wrap__validate {
+  cursor: pointer;
+  color: #FAFAFA;
+  font-weight: 600;
+  font-size: 1em;
+  background-color: #1AB76C;
+  width: 120px;
+  height: 45px;
+  margin: 1em 0;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  transition: transform 0.25s ease-in-out;
+}
+form .wrap__delete {
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  background-color: #FF3333;
+  border: none;
+  outline: none;
+  border-radius: 2em;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -10,16 +10,24 @@ class App
 {
     public function run()
     {
-        if ($_SERVER['REQUEST_URI'] == '/') {
+        $uri = strtok($_SERVER['REQUEST_URI'], '?');
+
+        if ($uri == '/') {
             $controller = new HomeController();
             $controller->index();
-        } elseif ($_SERVER['REQUEST_URI'] == '/users') {
+        } elseif ($uri == '/users') {
             $controller = new UserController();
             $controller->displayUsers();
-        } elseif ($_SERVER['REQUEST_URI'] == '/products') {
+        } elseif ($uri == '/users/update' && isset($_GET['id'])) {
+            $controller = new UserController();
+            if (isset($_POST['id'])) {
+                $controller->updateUser();
+            }
+            $controller->displayUser();
+        } elseif ($uri == '/products') {
             $controller = new ProductController();
             $controller->displayList();
-        } elseif ($_SERVER['REQUEST_URI'] == '/settings') {
+        } elseif ($uri == '/settings') {
             echo "Settings";
         } else {
             http_response_code(404);

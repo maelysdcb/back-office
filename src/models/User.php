@@ -10,6 +10,7 @@ class User extends BaseModel
     public function __construct()
     {
         $this->table = "users";
+        $this->id = "id";
         $conn = $this->getConnection();
     }
 }
