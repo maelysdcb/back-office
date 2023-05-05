@@ -1,0 +1,407 @@
+@use './globals/' as *;
+
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ----------------------------------------------------------------- */
+
+* {
+    
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: $bg-color;
+}
+
+.ion-icon {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+
+.app-container {
+    display: flex;
+    width: 100%;
+
+    .nav__sidebar {
+        background-color: $side-search-color;
+        flex-basis: 300px;
+        display: flex;
+        flex-direction: column;
+
+        &__nav-img {
+            padding: 2.5em 2em;
+        }
+
+        &__items {
+            ul{
+                display: flex;
+                flex-direction: column;
+                gap:1em;
+            }
+            li {
+                padding: 1em 2em;
+                list-style-type: none;
+                a {
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                    gap: 1em;
+                    color:$font-color;
+                }
+            }
+            .active {
+                background-color: $btn-color;
+            }
+        }
+    }
+}
+
+.app-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 2em 5em;
+    gap: 2.5em;
+
+    .header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color:$font-color;
+
+        &__title {
+            button {
+                cursor: pointer;
+                color:$font-color;
+                font-weight: 600;
+                font-size: 1em;
+                background-color: $btn-color;
+                width: 170px;
+                height: 47px;
+                border-radius: 2em;
+                border: none;
+                outline: none;
+                transition: transform 0.25s ease-in-out;
+                &:hover {
+                    transform: scale(0.97);
+                }
+            }
+        }
+
+        &__search {
+            position: relative;
+
+            input {
+                padding: 1.5em;
+                width: 419px;
+                height: 50px;
+                position: relative;
+                background-color: $side-search-color;
+                outline: none;
+                border: none;
+                border-radius: 0.5em;
+            }
+
+            input::placeholder {
+                font-size: 1.1em;
+            }
+
+            span {
+                cursor: pointer;
+                position: absolute;
+                padding: 1em;
+                background-color: $bg-color;
+                width: 40px;
+                height: 40px;
+                border-radius: 5px;
+                top: 5px;
+                right: 1%;
+
+                .ion-icon {
+                    position: absolute;
+                    inset: 7px 7px auto auto;
+                }
+            }
+        }
+
+        &__nav-user {
+            display: flex;
+            flex-direction: row;
+            gap: 2.5em;
+
+            &__notifications {
+                display: flex;
+                gap: 1.5em;
+            }
+        }
+    }
+
+    /* PRODUCTS PAGE */ 
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 5em;
+        justify-items: stretch;
+
+        .card {
+            color:$font-color;
+            border-radius: 0.5em;
+            background-color: $card-color;
+
+            &__header {
+                border-radius: 0.5em 0.5em 0 0;
+                object-fit: cover;
+                width: 100%;
+                height: 125px;
+            }
+
+            &__body {
+                padding: 1em;
+
+                &__content {
+                    display: flex;
+                    flex-direction: row;
+                    padding-top: 0.5em;
+                    justify-content: space-between;
+                    align-items: flex-end;
+
+                    &__infos {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* DASHBOARD PAGE */ 
+
+.home {
+    color:$bg-color;
+    width: 100%;
+    height:267px;
+    position: relative;
+    // img {
+    //     width: 100%;
+    //     height:267px;
+    //     object-fit: cover;
+    // }
+    h1{
+        color:$bg-color;
+        position:absolute;
+        top:45%;
+        left:10%;
+    }
+}
+.rounded {
+    border-radius: 1em;
+}
+.green {
+    background:$btn-color;
+}
+.grid__dashboard {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
+    grid-template-rows: 100px;
+    grid-auto-rows: 150px;
+    gap: 2em;
+    padding-top:1.5em;
+
+    h2{
+        color:$font-color;
+        grid-column: span 4;
+        align-self: center;
+    }
+
+    &__normal {
+        grid-column: span 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding:2em;
+        &__infos {
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            span{
+                font-size:1.2em;
+            }
+        }
+        &__details {
+            span {
+                font-size:2.5em;
+                font-weight: 600;
+            }
+        }
+    }
+    &__tall {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        grid-row: span 2;
+        padding:2em;
+        &__infos {
+            font-weight: 700;
+            display: flex;
+            align-items:center;
+            justify-content: space-between;
+        }
+    }
+    #violet {
+        background: #C89AFE;
+    }
+    #blue {
+        background: #4FA2FF;
+    }
+    #yellow1 {
+        background: #FFD154;
+    }
+    #salmon {
+        background: #FBC797;
+    }
+    #yellow2 {
+        background: #F8FD99;
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "name": "maelys/back-office",
+    "autoload": {
+        "psr-4": {
+            "core\\": "core/",
+            "src\\": "src/"
+        }
+    },
+    "require": {
+        "twig/twig": "^3.5"
+    }
+}

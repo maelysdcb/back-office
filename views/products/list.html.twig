@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block headerTitle %}
+	<div class="header header__title">
+		<h1>
+			{{title}}
+		</h1>
+		<button>
+			{{button}}
+		</button>
+	</div>
+
+{% endblock %}
+
+{% block content %}
+	<div class="grid">
+		{% for product in products %}
+			<div class="card">
+				<img class="card__header" src="{{product.image}}" alt="{{product.name}}">
+				<div class="card__body">
+					<h3>{{product.name}}</h3>
+					<div class="card__body__content">
+						<div class="card__body__content__infos">
+							<span>Price per unit :
+								{{product.price}}€</span>
+							<span>Quantity :
+								{{product.quantity}}
+							</span>
+						</div>
+						<img class="ion-icon" src="./assets/svg/create-outline.svg" alt="modify">
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
+
