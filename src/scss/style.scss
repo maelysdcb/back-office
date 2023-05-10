@@ -153,6 +153,7 @@ body {
     height: 25px;
 }
 
+/* TEMPLATE PAGE FOR AUTH */
 .app-container {
     display: flex;
     width: 100%;
@@ -209,14 +210,14 @@ body {
         color: $font-color;
 
         &__title {
-            button {
+            a.btn {
+                text-decoration: none;
                 cursor: pointer;
                 color: $font-color;
                 font-weight: 600;
                 font-size: 1em;
                 background-color: $btn-color;
-                width: 170px;
-                height: 47px;
+                padding: 1em 3em;
                 border-radius: 7px;
                 border: none;
                 outline: none;
@@ -230,8 +231,8 @@ body {
 
         &__search {
             position: relative;
-
             input {
+                color:$font-color;
                 padding: 1.5em;
                 width: 419px;
                 height: 50px;
@@ -268,12 +269,56 @@ body {
             display: flex;
             flex-direction: row;
             gap: 2.5em;
+            // position:relative;
 
             &__notifications {
                 display: flex;
                 gap: 1.5em;
             }
+
+            &__profile {
+                &__dropdown {
+                    margin-top: 1em;
+                    position: absolute;
+                    z-index: 1;
+                    right: 2%;
+                    background-color: $card-color;
+                    box-shadow: 5px 5px 10px 3px rgba($side-search-color, 0.5);
+                    border-radius: 5px;
+                    border: 1px solid rgba($font-color, 0.2);
+
+                    ul {
+                        display: flex;
+                        flex-direction: column;
+                        // justify-content: flex-start;
+                        padding: 1em;
+                        gap: 1em;
+
+                        a {
+                            text-decoration: none;
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            gap: 0.5em;
+                            color: $font-color;
+
+                            img {
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+
+                        #logout {
+                            color: $red;
+                        }
+                    }
+                }
+            }
         }
+    }
+
+    .hidden {
+        display: none;
     }
 
     /* PRODUCTS PAGE */
@@ -302,15 +347,30 @@ body {
 
                 &__content {
                     display: flex;
-                    flex-direction: row;
-                    padding-top: 0.5em;
-                    justify-content: space-between;
-                    align-items: flex-end;
+                    flex-direction: column;
+                    padding-top: 1em;
+                    gap: 1em;
 
                     &__infos {
                         display: flex;
                         flex-direction: column;
                         gap: 0.5em;
+
+                    }
+
+                    &__actions {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        border-top:1px dashed rgba($font-color, 0.3);
+                        padding-top:1em;
+                    }
+                    #admin {
+                        color:$btn-color;
+                    }
+                    #user {
+                        color:#FFD154;
                     }
                 }
             }
@@ -424,24 +484,28 @@ body {
     }
 }
 
-/* MODIFY PAGE */
+/* UPDATE PAGE */
 
 form {
-    background-color: $card-color;
     width: 100%;
-    height: 450px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding:3em 5em;
     color: $font-color;
     border-radius: 1em;
+
+    .btn-end {
+        display: flex;
+        justify-content: flex-end;
+    }
 
     .wrap {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        margin: 0.5em 0;
 
         &__field {
             &__item {
@@ -453,10 +517,16 @@ form {
             }
         }
 
-        input {
+        .radio {
+            width: 380px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"] {
             outline: none;
             padding: 1em;
-            color:$font-color;
+            color: $font-color;
             background-color: $bg-color;
             border: 1px solid rgba($font-color, 0.2);
             width: 380px;
@@ -464,7 +534,12 @@ form {
             border-radius: 5px;
         }
 
-        
+        input[type="radio"] {
+            cursor: pointer;
+            width: 14px;
+            height: 14px;
+        }
+
         &__validate {
             cursor: pointer;
             color: $font-color;
@@ -473,20 +548,109 @@ form {
             background-color: $btn-color;
             width: 120px;
             height: 45px;
-            margin:1em 0;
+            margin: 2em 0;
             border-radius: 7px;
             border: none;
             outline: none;
-            transition: transform 0.25s ease-in-out;
+            text-transform: uppercase;
         }
+
         &__delete {
             cursor: pointer;
             width: 45px;
             height: 45px;
             background-color: $red;
-            border:none;
-            outline:none;
-            border-radius:2em;
+            border: none;
+            outline: none;
+            border-radius: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+/* LOGIN PAGE */
+
+.main-login {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    .wrap-left {
+        justify-self: center;
+        align-self: center;
+        width: 50%;
+
+        h1 {
+            color: $font-color;
+        }
+
+        .form-login {
+            display: flex;
+            flex-direction: column;
+            padding-top: 2em;
+
+            &__field {
+                display: flex;
+                flex-direction: column;
+                margin: 1em 0;
+
+                &__item {
+                    padding: 1em 0;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 1em;
+                }
+
+                &__forgotItem {
+                    display: flex;
+                    flex-direction: column;
+
+                    a {
+                        color: #3D63CC;
+                        align-self: flex-end;
+                    }
+
+                    gap:0.5em
+                }
+
+                input {
+                    outline: none;
+                    padding: 1em;
+                    color: $font-color;
+                    background-color: $bg-color;
+                    border: 1px solid rgba($font-color, 0.2);
+                    border-radius: 5px;
+                }
+            }
+
+            button {
+                cursor: pointer;
+                color: $font-color;
+                font-weight: 600;
+                font-size: 1em;
+                background-color: $btn-color;
+                height: 45px;
+                margin: 1.5em 0;
+                border-radius: 5px;
+                border: none;
+                outline: none;
+            }
+
+            a {
+                color: #3D63CC;
+            }
+        }
+    }
+
+    .wrap-right {
+        img {
+            width: 80%;
+            height: 100%;
+            border-radius: 25px;
         }
     }
 }

@@ -1,31 +1,27 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
+
 
 {% block headerTitle %}
 	<div class="header header__title">
-		<h1>{{user.first_name}}
-			{{user.last_name}}
-			({{user.id}})</h1>
+		<h1>Add user</h1>
 	</div>
 {% endblock %}
-
 {% block content %}
-	<form action="/users/update?id={{user.id}}" method="POST">
-		<input type="text" name="id" value="{{user.id}}" hidden>
-
+	<form action="/users/add-user" method="POST">
 		<div class="wrap">
 			<div class="wrap__field">
 				<div class="wrap__field__item">
 					<img class="ion-icon" src="../assets/svg/person-circle-outline.svg" alt="first-name">
 					<label for="first_name">First name :</label>
 				</div>
-				<input type="text" name="first_name" data-id="{{user.id}}" value="{{user.first_name}}">
+				<input type="text" name="first_name" data-id="{{user.id}}" placeholder="Toto">
 			</div>
 			<div class="wrap__field">
 				<div class="wrap__field__item">
 					<img class="ion-icon" src="../assets/svg/person-circle-outline.svg" alt="last-name">
 					<label for="last_name">Last name :</label>
 				</div>
-				<input type="text" name="last_name" data-id="{{user.id}}" value="{{user.last_name}}">
+				<input type="text" name="last_name" data-id="{{user.id}}" placeholder="Toto">
 			</div>
 		</div>
 		<div class="wrap">
@@ -34,35 +30,42 @@
 					<img class="ion-icon" src="../assets/svg/mail-outline.svg" alt="email">
 					<label for="email">Email :</label>
 				</div>
-				<input type="text" name="email" data-id="{{user.id}}" value="{{user.email}}">
+				<input type="text" name="email" data-id="{{user.id}}" placeholder="example@gmail.com">
 			</div>
 			<div class="wrap__field">
 				<div class="wrap__field__item">
 					<img class="ion-icon" src="../assets/svg/card-outline.svg" alt="credits">
 					<label for="credits">Credits :</label>
 				</div>
-				<input type="number" name="credits" data-id="{{user.id}}" value="{{user.credits}}">
+				<input type="number" name="credits" data-id="{{user.id}}" placeholder="50€">
 			</div>
 		</div>
-		{# <div class="wrap">
+		<div class="wrap">
+			<div class="wrap__field">
+				<div class="wrap__field__item">
+					<img class="ion-icon" src="../assets/svg/key-outline.svg" alt="password">
+					<label for="password">Password :</label>
+				</div>
+				<input type="password" name="password" data-id="{{user.id}}" placeholder="*************">
+			</div>
 			<div class="wrap__field radio">
 				<div class="wrap__field__item">
 					<img class="ion-icon" src="../assets/svg/people-outline.svg" alt="admin">
 					<label for="credits">Admin :</label>
 				</div>
 				<div class="">
-					<input type="radio" id="true" name="isAdmin"/>
+					<input type="radio" id="true" name="isAdmin" value="1"/>
 					<label for="">True</label>
 				</div>
 				<div class="">
-					<input type="radio" id="false" name="isAdmin" checked/>
+					<input type="radio" id="false" name="isAdmin" value="0" checked/>
 					<label for="">False</label>
 				</div>
 			</div>
-		</div> #}
-		<div class="wrap">
-			<a class="wrap__delete" href="/users/delete?id={{user.id}}"><img class="ion-icon" src="../assets/svg/trash-outline.svg" alt="delete"/></a>
-			<button class="wrap__validate" type="submit">Update</button>
+		</div>
+		<div class="btn-end">
+			<button class="wrap__validate" type="submit">Validate</button>
 		</div>
 	</form>
 {% endblock %}
+

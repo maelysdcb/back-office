@@ -148,6 +148,7 @@ body {
   height: 25px;
 }
 
+/* TEMPLATE PAGE FOR AUTH */
 .app-container {
   display: flex;
   width: 100%;
@@ -196,26 +197,27 @@ body {
   justify-content: space-between;
   color: #FAFAFA;
 }
-.app-content .header__title button {
+.app-content .header__title a.btn {
+  text-decoration: none;
   cursor: pointer;
   color: #FAFAFA;
   font-weight: 600;
   font-size: 1em;
   background-color: #1AB76C;
-  width: 170px;
-  height: 47px;
+  padding: 1em 3em;
   border-radius: 7px;
   border: none;
   outline: none;
   transition: transform 0.25s ease-in-out;
 }
-.app-content .header__title button:hover {
+.app-content .header__title a.btn:hover {
   transform: scale(0.97);
 }
 .app-content .header__search {
   position: relative;
 }
 .app-content .header__search input {
+  color: #FAFAFA;
   padding: 1.5em;
   width: 419px;
   height: 50px;
@@ -252,6 +254,40 @@ body {
   display: flex;
   gap: 1.5em;
 }
+.app-content .header__nav-user__profile__dropdown {
+  margin-top: 1em;
+  position: absolute;
+  z-index: 1;
+  right: 2%;
+  background-color: #28282D;
+  box-shadow: 5px 5px 10px 3px rgba(23, 23, 27, 0.5);
+  border-radius: 5px;
+  border: 1px solid rgba(250, 250, 250, 0.2);
+}
+.app-content .header__nav-user__profile__dropdown ul {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  gap: 1em;
+}
+.app-content .header__nav-user__profile__dropdown ul a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+  color: #FAFAFA;
+}
+.app-content .header__nav-user__profile__dropdown ul a img {
+  width: 20px;
+  height: 20px;
+}
+.app-content .header__nav-user__profile__dropdown ul #logout {
+  color: #FF3333;
+}
+.app-content .hidden {
+  display: none;
+}
 .app-content .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -275,15 +311,28 @@ body {
 }
 .app-content .grid .card__body__content {
   display: flex;
-  flex-direction: row;
-  padding-top: 0.5em;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
+  padding-top: 1em;
+  gap: 1em;
 }
 .app-content .grid .card__body__content__infos {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+}
+.app-content .grid .card__body__content__actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed rgba(250, 250, 250, 0.3);
+  padding-top: 1em;
+}
+.app-content .grid .card__body__content #admin {
+  color: #1AB76C;
+}
+.app-content .grid .card__body__content #user {
+  color: #FFD154;
 }
 
 /* DASHBOARD PAGE */
@@ -371,23 +420,26 @@ body {
   background: #F8FD99;
 }
 
-/* MODIFY PAGE */
+/* UPDATE PAGE */
 form {
-  background-color: #28282D;
   width: 100%;
-  height: 450px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 3em 5em;
   color: #FAFAFA;
   border-radius: 1em;
+}
+form .btn-end {
+  display: flex;
+  justify-content: flex-end;
 }
 form .wrap {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin: 0.5em 0;
 }
 form .wrap__field__item {
   padding: 1em 0;
@@ -396,7 +448,12 @@ form .wrap__field__item {
   align-items: center;
   gap: 1em;
 }
-form .wrap input {
+form .wrap .radio {
+  width: 380px;
+}
+form .wrap input[type=text],
+form .wrap input[type=password],
+form .wrap input[type=number] {
   outline: none;
   padding: 1em;
   color: #FAFAFA;
@@ -406,6 +463,11 @@ form .wrap input {
   height: 45px;
   border-radius: 5px;
 }
+form .wrap input[type=radio] {
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+}
 form .wrap__validate {
   cursor: pointer;
   color: #FAFAFA;
@@ -414,11 +476,11 @@ form .wrap__validate {
   background-color: #1AB76C;
   width: 120px;
   height: 45px;
-  margin: 1em 0;
+  margin: 2em 0;
   border-radius: 7px;
   border: none;
   outline: none;
-  transition: transform 0.25s ease-in-out;
+  text-transform: uppercase;
 }
 form .wrap__delete {
   cursor: pointer;
@@ -428,6 +490,79 @@ form .wrap__delete {
   border: none;
   outline: none;
   border-radius: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* LOGIN PAGE */
+.main-login {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.main-login .wrap-left {
+  justify-self: center;
+  align-self: center;
+  width: 50%;
+}
+.main-login .wrap-left h1 {
+  color: #FAFAFA;
+}
+.main-login .wrap-left .form-login {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2em;
+}
+.main-login .wrap-left .form-login__field {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+}
+.main-login .wrap-left .form-login__field__item {
+  padding: 1em 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+}
+.main-login .wrap-left .form-login__field__forgotItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.main-login .wrap-left .form-login__field__forgotItem a {
+  color: #3D63CC;
+  align-self: flex-end;
+}
+.main-login .wrap-left .form-login__field input {
+  outline: none;
+  padding: 1em;
+  color: #FAFAFA;
+  background-color: #202024;
+  border: 1px solid rgba(250, 250, 250, 0.2);
+  border-radius: 5px;
+}
+.main-login .wrap-left .form-login button {
+  cursor: pointer;
+  color: #FAFAFA;
+  font-weight: 600;
+  font-size: 1em;
+  background-color: #1AB76C;
+  height: 45px;
+  margin: 1.5em 0;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+.main-login .wrap-left .form-login a {
+  color: #3D63CC;
+}
+.main-login .wrap-right img {
+  width: 80%;
+  height: 100%;
+  border-radius: 25px;
 }
 
 /*# sourceMappingURL=style.css.map */

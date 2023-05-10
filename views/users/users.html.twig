@@ -5,11 +5,10 @@
 		<h1>
 			{{title}}
 		</h1>
-		<button>
-			{{button}}
-		</button>
+		<a href="/users/add-user" class="btn">
+			Add user
+		</a>
 	</div>
-
 {% endblock %}
 
 {% block content %}
@@ -17,19 +16,30 @@
 		{% for user in users %}
 			<div class="card">
 				<div class="card__body">
-					<h3>{{user.first_name}} {{user.last_name}}</h3>
+					<h3>{{user.first_name}}
+						{{user.last_name}}</h3>
 					<div class="card__body__content">
+							{% if user.isAdmin is same as(1) %}
+								<span id="admin"><b>Admin</b></span>
+							{% else %}
+								<span id="user"><b>User</b></span>
+							{% endif %}
 						<div class="card__body__content__infos">
 							<span>Email :
 								{{user.email}}
 							</span>
 							<span>Credits :
 								{{user.credits}}€
-                            </span>
+							</span>
 						</div>
-                        <a href="/users/update?id={{user.id}}">
-						    <img class="ion-icon" src="./assets/svg/create-outline.svg" alt="update">
-                        </a>
+						<div class="card__body__content__actions">
+							<a href="/users/delete?id={{user.id}}">
+								<img class="ion-icon" src="./assets/svg/trash-outline.svg" alt="delete-icon"/>
+							</a>
+							<a href="/users/update?id={{user.id}}">
+								<img class="ion-icon" src="./assets/svg/create-outline.svg" alt="update">
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+{% block headerTitle %}
+	<div class="header header__title">
+		<h1>{{product.name}}</h1>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<form action="/users/update?id={{product.id}}" method="POST">
+		<input type="text" name="id" value="{{product.id}}" hidden>
+
+		<div class="wrap">
+			<div class="wrap__field">
+				<div class="wrap__field__item">
+					<img class="ion-icon" src="../assets/svg/restaurant-outline.svg" alt="first-name">
+					<label for="first_name">Name :</label>
+				</div>
+				<input type="text" name="first_name" data-id="{{product.id}}" value="{{product.name}}">
+			</div>
+			<div class="wrap__field">
+				<div class="wrap__field__item">
+					<img class="ion-icon" src="../assets/svg/pricetag-outline.svg" alt="last-name">
+					<label for="last_name">Price :</label>
+				</div>
+				<input type="text" name="last_name" data-id="{{product.id}}" value="{{product.price}}">
+			</div>
+		</div>
+		<div class="wrap">
+			<div class="wrap__field">
+				<div class="wrap__field__item">
+					<img class="ion-icon" src="../assets/svg/cube-outline.svg" alt="email">
+					<label for="email">Quantity :</label>
+				</div>
+				<input type="text" name="email" data-id="{{product.id}}" value="{{product.quantity}}">
+			</div>
+		</div>
+        <div class="wrap">
+			<a class="wrap__delete" href="/products/delete?id={{product.id}}"><img class="ion-icon" src="../assets/svg/trash-outline.svg" alt="delete"/></a>
+			<button class="wrap__validate" type="submit">Update</button>
+		</div>
+	</form>
+{% endblock %}

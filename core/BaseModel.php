@@ -22,7 +22,7 @@ abstract class BaseModel
 
     public function getOne($id)
     {
-        $sql = "SELECT * FROM " . $this->table . " WHERE id=:id ";
+        $sql = "SELECT * FROM " . $this->table . " WHERE id=:id";
         $query = $this->_connexion->prepare($sql);
         $query->bindValue(":id", $id);
         $query->execute();
@@ -31,12 +31,18 @@ abstract class BaseModel
 
     public function getAll()
     {
-        $sql = "SELECT * FROM " . $this->table . " LIMIT 20";
+        $sql = "SELECT * FROM " . $this->table . " ORDER BY id DESC LIMIT 9";
         $query = $this->_connexion->prepare($sql);
         $query->execute();
         return $query->fetchAll(\PDO::FETCH_OBJ);
     }
 
+    public function selectCountAll() {
+        $sql = "SELECT COUNT(*) FROM " . $this->table;
+        $query = $this->_connexion->prepare($sql);
+        $query->execute();
+        return $query->fetch(\PDO::FETCH_ASSOC);
+    }
 
     public function updateAllFields($id, $data)
     {
@@ -53,16 +59,26 @@ abstract class BaseModel
         foreach ($data as $column => $value) {
             $query->bindValue(":" . $column, $value);
         }
-
-        echo $sql;
-
         $query->execute();
     }
 
-    public function deleteUser($id) {
+    public function deleteOne($id) {
         $sql = "DELETE FROM " . $this->table . " WHERE id=:id";
         $query = $this->_connexion->prepare($sql);
         $query->bindValue(":id", $id);
+        $query->execute();
+    }
+
+    public function addAllFields($data) {
+        $columns = implode(", ", array_keys($data));
+        $values = implode(", :", array_keys($data));
+        
+        $sql = "INSERT INTO " . $this->table . " (" . $columns . ") VALUES (:" . $values . ")";
+    
+        $query = $this->_connexion->prepare($sql);
+        foreach ($data as $column => $value) {
+            $query->bindValue(":" . $column, $value);
+        }
         $query->execute();
     }
 }
