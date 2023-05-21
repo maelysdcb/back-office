@@ -11,38 +11,50 @@
 	<form action="/products/add-product" method="POST">
 		<div class="wrap">
 			<div class="wrap__field">
-				<div class="wrap__field__item">
-					<img class="ion-icon" src="../assets/svg/restaurant-outline.svg" alt="name">
+				<div class="wrap__field__label">
+					<img class="ion-icon" src="../assets/svg/restaurant-outline.svg" alt="name-icon">
 					<label for="name">Name :</label>
 				</div>
-				<input type="text" name="name" data-id="{{product.id}}" placeholder="Ex: Pasta">
+				<div class="wrap__field__item">
+					<input type="text" name="name" data-id="{{product.id}}" placeholder="Ex: Pasta" required>
+					<span class="name"></span>
+				</div>
 			</div>
 			<div class="wrap__field">
-				<div class="wrap__field__item">
-					<img class="ion-icon" src="../assets/svg/pricetag-outline.svg" alt="price">
+				<div class="wrap__field__label">
+					<img class="ion-icon" src="../assets/svg/pricetag-outline.svg" alt="price-icon">
 					<label for="price">Price :</label>
 				</div>
-				<input type="text" name="price" data-id="{{product.id}}" placeholder="10.00">
+				<div class="wrap__field__item">
+					<input type="text" name="price" data-id="{{product.id}}" placeholder="10.00" required>
+					<span class="price"></span>
+				</div>
 			</div>
 		</div>
 		<div class="wrap">
 			<div class="wrap__field">
-				<div class="wrap__field__item">
-					<img class="ion-icon" src="../assets/svg/cube-outline.svg" alt="quantity">
+				<div class="wrap__field__label">
+					<img class="ion-icon" src="../assets/svg/cube-outline.svg" alt="quantity-icon">
 					<label for="quantity">Quantity :</label>
 				</div>
-				<input type="text" name="quantity" data-id="{{product.id}}" placeholder="20">
+				<div class="wrap__field__item">
+					<input type="text" name="quantity" data-id="{{product.id}}" placeholder="20">
+					<span class="quantity"></span>
+				</div>
 			</div>
 			<div class="wrap__field">
-				<div class="wrap__field__item">
-					<img class="ion-icon" src="../assets/svg/image-outline.svg" alt="quantity">
+				<div class="wrap__field__label">
+					<img class="ion-icon" src="../assets/svg/image-outline.svg" alt="picture-icon">
 					<label for="image">Image :</label>
 				</div>
-				<input type="text" name="quantity" data-id="{{product.id}}" value="./assets/img/" accept="image/jpeg">
+				<div class="wrap__field__item">
+					<input type="text" name="image" data-id="{{product.id}}" value="./assets/img/" accept="image/jpeg">
+					<span class="image"></span>
+				</div>
 			</div>
 		</div>
-        <div class="btn-end">
-			<button class="wrap__validate" type="submit">Validate</button>
+		<div class="btn-end">
+			<button class="wrap__validate" type="submit" disabled>Validate</button>
 		</div>
 	</form>
 {% endblock %}

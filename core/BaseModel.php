@@ -5,7 +5,7 @@ namespace core;
 abstract class BaseModel
 {
     private $host = 'localhost', $db_name = 'back_office', $username = 'root', $password = '';
-    private $_connexion;
+    protected $_connexion;
     protected $table, $id, $data = [];
 
     public function getConnection()
@@ -15,12 +15,21 @@ abstract class BaseModel
         try {
             $this->_connexion = new \PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
             $this->_connexion->exec("set names utf8");
+            $this->_connexion->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $exception) {
             echo "Erreur de connexion : " . $exception->getMessage();
         }
     }
 
-    public function getOne($id)
+    public function checkAuth($data) {
+        $sql= "SELECT * FROM " . $this->table . " WHERE email=:email AND isAdmin=1";
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(":email", $data['email']);
+        $query->execute();
+        return $query->fetch(\PDO::FETCH_OBJ);
+    }
+    
+    public function getOne(int $id)
     {
         $sql = "SELECT * FROM " . $this->table . " WHERE id=:id";
         $query = $this->_connexion->prepare($sql);
@@ -44,7 +53,15 @@ abstract class BaseModel
         return $query->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function updateAllFields($id, $data)
+    public function selectCountAllWhereCondition($column, $operator, int $value) {
+        $sql = "SELECT COUNT(*) FROM " . $this->table . " WHERE " . $column . $operator . ":value";
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(":value", $value);
+        $query->execute();
+        return $query->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function updateAllFields(int $id, $data)
     {
         $sql = "UPDATE " . $this->table . " SET ";
         $setStatements = [];
@@ -62,7 +79,7 @@ abstract class BaseModel
         $query->execute();
     }
 
-    public function deleteOne($id) {
+    public function deleteOne(int $id) {
         $sql = "DELETE FROM " . $this->table . " WHERE id=:id";
         $query = $this->_connexion->prepare($sql);
         $query->bindValue(":id", $id);

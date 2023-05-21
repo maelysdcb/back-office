@@ -9,10 +9,10 @@ class UserController extends BaseController
 {
 
     private $model;
-
     public function __construct()
     {
         parent::__construct();
+        $this->checkInactivity();
         $this->model = new User();
     }
 
@@ -38,8 +38,10 @@ class UserController extends BaseController
     }
     public function updateUser()
     {
-        $updateUser = $this->model->updateAllFields($_GET['id'], $_POST);
-        header("Location:/users/update?id=" . $_GET['id']);
+        if(!empty(trim($_POST['first_name'])) && !empty(trim($_POST['last_name'])) && !empty(trim($_POST['email'])) && !empty(trim($_POST['credits']))) {
+            $updateUser = $this->model->updateAllFields($_GET['id'], $_POST);
+            header("Location:/users/update?id=" . $_GET['id']);
+        } 
     }
 
     public function deleteUser() {
@@ -49,10 +51,14 @@ class UserController extends BaseController
 
     
     public function addUser() {
-        $_POST['credits'] = intval($_POST['credits']);
-        $_POST['isAdmin'] = intval($_POST['isAdmin']);
-        $addUser = $this->model->addAllFields($_POST);
-        header("Location:/users");  
+        if(!empty(trim($_POST['last_name'])) && !empty(trim($_POST['first_name'])) && !empty(trim($_POST['email'])) && !empty(trim($_POST['credits'])) && !empty(trim($_POST['password'])) && !empty(trim($_POST['isAdmin']))) {
+            $_POST['credits'] = intval($_POST['credits']);
+            $_POST['isAdmin'] = intval($_POST['isAdmin']);
+            $addUser = $this->model->addAllFields($_POST);
+            header("Location:/users");  
+        } else {
+            echo 'error';
+        }
     }
     
     public function displayAddUser() {

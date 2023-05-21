@@ -18,19 +18,19 @@
 				<div class="nav__sidebar__items">
 					<ul>
 						<li class="{% if title == 'Dashboard' %}active{% endif %}">
-							<a href="/"><img class="ion-icon" src="../assets/svg/grid-outline.svg" alt="dashboard"/><span>Dashboard</span>
+							<a href="/"><img class="ion-icon" src="../assets/svg/grid-outline.svg" alt="dashboard-icon"/><span>Dashboard</span>
 							</a>
 						</li>
 						<li class="{% if title == 'Users' %}active{% endif %}">
-							<a href="/users"><img class="ion-icon" src="../assets/svg/person-circle-outline.svg" alt="users"/><span href="users">Users</span>
+							<a href="/users"><img class="ion-icon" src="../assets/svg/person-circle-outline.svg" alt="users-icon"/><span href="users">Users</span>
 							</a>
 						</li>
 						<li class="{% if title == 'Products' %}active{% endif %}">
-							<a href="/products"><img class="ion-icon" src="../assets/svg/list-outline.svg" alt="products"/><span href="products">Products</span>
+							<a href="/products"><img class="ion-icon" src="../assets/svg/list-outline.svg" alt="products-icon"/><span href="products">Products</span>
 							</a>
 						</li>
 						<li class="{% if title == 'Settings' %}active{% endif %}">
-							<a href="/settings"><img class="ion-icon" src="../assets/svg/settings-outline.svg" alt="settings"/><span href="settings">Settings</span>
+							<a href="/settings"><img class="ion-icon" src="../assets/svg/settings-outline.svg" alt="settings-icon"/><span href="settings">Settings</span>
 							</a>
 						</li>
 					</ul>
@@ -41,20 +41,20 @@
 					<div class="header__search">
 						<input type="text" placeholder="Search"/>
 						<span>
-							<img class="ion-icon" src="../assets/svg/search-outline.svg"/>
+							<img class="ion-icon" src="../assets/svg/search-outline.svg" alt="search-icon" />
 						</span>
 					</div>
 					<div class="header__nav-user">
 						<div class="header__nav-user__notifications">
-							<img class="ion-icon" src="../assets/svg/mail-outline.svg" alt="mail"/>
+							<img class="ion-icon" src="../assets/svg/mail-outline.svg" alt="email-icon"/>
 							<img class="ion-icon" src="../assets/svg/notifications-outline.svg" alt="notifications"/>
 						</div>
 						<div class="header__nav-user__profile">
-							<img class="ion-icon" id="profile" src="../assets/svg/person-circle-outline.svg" alt="profile"/>
+							<img class="ion-icon" id="profile" src="../assets/svg/person-circle-outline.svg" alt="profile-icon"/>
 							<div class="header__nav-user__profile__dropdown hidden" id="dropdownProfile">
 								<ul>
-									<li><a href="/settings"><img src="../assets/svg/settings-outline.svg" alt=""> Settings</a></li>
-									<li><a href="/login" id="logout"><img src="../assets/svg/power-outline.svg" alt="disconnect"> Log out</a></li>
+									<li><a href="/settings"><img src="../assets/svg/settings-outline.svg" alt="settings-icon"> Settings</a></li>
+									<li><a href="/logout" id="logout"><img src="../assets/svg/power-outline.svg" alt="logout-icon"> Log out</a></li>
 								</ul>
 							</div>
 						</div>
@@ -67,6 +67,7 @@
 			</div>
 		</div>
 		<script src="../assets/js/script.js"></script>
+		<script src="../assets/js/validation.js"></script>
 	</body>
 </html>
 

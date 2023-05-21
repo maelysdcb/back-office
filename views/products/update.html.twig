@@ -7,37 +7,59 @@
 {% endblock %}
 
 {% block content %}
-	<form action="/users/update?id={{product.id}}" method="POST">
+	<form action="/products/update?id={{product.id}}" method="POST">
 		<input type="text" name="id" value="{{product.id}}" hidden>
 
 		<div class="wrap">
 			<div class="wrap__field">
-				<div class="wrap__field__item">
-					<img class="ion-icon" src="../assets/svg/restaurant-outline.svg" alt="first-name">
-					<label for="first_name">Name :</label>
+				<div class="wrap__field__label">
+					<img class="ion-icon" src="../assets/svg/restaurant-outline.svg" alt="name-icon">
+					<label for="name">Name :</label>
 				</div>
-				<input type="text" name="first_name" data-id="{{product.id}}" value="{{product.name}}">
+				<div class="wrap__field__item">
+					<input type="text" name="name" data-id="{{product.id}}" value="{{product.name}}" required>
+					<span class="name"></span>
+				</div>
 			</div>
 			<div class="wrap__field">
-				<div class="wrap__field__item">
-					<img class="ion-icon" src="../assets/svg/pricetag-outline.svg" alt="last-name">
-					<label for="last_name">Price :</label>
+				<div class="wrap__field__label">
+					<img class="ion-icon" src="../assets/svg/pricetag-outline.svg" alt="price-icon">
+					<label for="price">Price :</label>
 				</div>
-				<input type="text" name="last_name" data-id="{{product.id}}" value="{{product.price}}">
+				<div class="wrap__field__item">
+					<input type="text" name="price" data-id="{{product.id}}" value="{{product.price}}" required>
+					<span class="price"></span>
+				</div>
 			</div>
 		</div>
 		<div class="wrap">
 			<div class="wrap__field">
-				<div class="wrap__field__item">
-					<img class="ion-icon" src="../assets/svg/cube-outline.svg" alt="email">
-					<label for="email">Quantity :</label>
+				<div class="wrap__field__label">
+					<img class="ion-icon" src="../assets/svg/cube-outline.svg" alt="quantity-icon">
+					<label for="quantity">Quantity :</label>
 				</div>
-				<input type="text" name="email" data-id="{{product.id}}" value="{{product.quantity}}">
+				<a href="/api/products/consume?id={{product.id}}"><img class="ion-icon" src="../assets/svg/remove-circle-outline.svg" alt="remove-icon"></a>
+				<span name="quantity" data-id="{{product.id}}">
+					<span>
+						{{product.quantity}}
+					</span>
+					<a href="/products/addQuantity?id={{product.id}}"><img class="ion-icon" src="../assets/svg/add-circle-outline.svg" alt="add-icon"></a>
+				</div>
+				<div class="wrap__field">
+					<div class="wrap__field__label">
+						<img class="ion-icon" src="../assets/svg/image-outline.svg" alt="picture-icon">
+						<label for="image">Image :</label>
+					</div>
+					<div class="wrap__field__item">
+						<input type="text" name="image" data-id="{{product.id}}" value="{{product.image}}" required>
+						<span class="image"></span>
+					</div>
+				</div>
 			</div>
-		</div>
-        <div class="wrap">
-			<a class="wrap__delete" href="/products/delete?id={{product.id}}"><img class="ion-icon" src="../assets/svg/trash-outline.svg" alt="delete"/></a>
-			<button class="wrap__validate" type="submit">Update</button>
-		</div>
-	</form>
-{% endblock %}
+			<div class="wrap">
+				<a class="wrap__delete" href="/products/delete?id={{product.id}}"><img class="ion-icon" src="../assets/svg/trash-outline.svg" alt="delete"/></a>
+				<button class="wrap__validate" type="submit" disabled>Update</button>
+			</div>
+		</form>
+	{% endblock %}
+

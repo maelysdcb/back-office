@@ -14,55 +14,54 @@
 
 		<div class="wrap">
 			<div class="wrap__field">
-				<div class="wrap__field__item">
+				<div class="wrap__field__label">
 					<img class="ion-icon" src="../assets/svg/person-circle-outline.svg" alt="first-name">
 					<label for="first_name">First name :</label>
 				</div>
-				<input type="text" name="first_name" data-id="{{user.id}}" value="{{user.first_name}}">
+				<div class="wrap__field__item">
+					<input type="text" name="first_name" data-id="{{user.id}}" value="{{user.first_name}}" required>
+					<span class="firstName"></span>
+				</div>
 			</div>
 			<div class="wrap__field">
-				<div class="wrap__field__item">
+				<div class="wrap__field__label">
 					<img class="ion-icon" src="../assets/svg/person-circle-outline.svg" alt="last-name">
 					<label for="last_name">Last name :</label>
 				</div>
-				<input type="text" name="last_name" data-id="{{user.id}}" value="{{user.last_name}}">
+				<div class="wrap__field__item">
+					<input type="text" name="last_name" data-id="{{user.id}}" value="{{user.last_name}}" required>
+					<span class="lastName"></span>
+				</div>
 			</div>
 		</div>
 		<div class="wrap">
 			<div class="wrap__field">
-				<div class="wrap__field__item">
+				<div class="wrap__field__label">
 					<img class="ion-icon" src="../assets/svg/mail-outline.svg" alt="email">
 					<label for="email">Email :</label>
 				</div>
-				<input type="text" name="email" data-id="{{user.id}}" value="{{user.email}}">
+				<div class="wrap__field__item">
+					<input type="text" name="email" data-id="{{user.id}}" value="{{user.email}}" required>
+					<span class="email"></span>
+				</div>
 			</div>
 			<div class="wrap__field">
-				<div class="wrap__field__item">
+				<div class="wrap__field__label">
 					<img class="ion-icon" src="../assets/svg/card-outline.svg" alt="credits">
 					<label for="credits">Credits :</label>
 				</div>
-				<input type="number" name="credits" data-id="{{user.id}}" value="{{user.credits}}">
+				<div class="wrap__field__item">
+					<input type="number" name="credits" data-id="{{user.id}}" value="{{user.credits}}" required>
+					<span class="credits"></span>
+				</div>
 			</div>
 		</div>
-		{# <div class="wrap">
-			<div class="wrap__field radio">
-				<div class="wrap__field__item">
-					<img class="ion-icon" src="../assets/svg/people-outline.svg" alt="admin">
-					<label for="credits">Admin :</label>
-				</div>
-				<div class="">
-					<input type="radio" id="true" name="isAdmin"/>
-					<label for="">True</label>
-				</div>
-				<div class="">
-					<input type="radio" id="false" name="isAdmin" checked/>
-					<label for="">False</label>
-				</div>
-			</div>
-		</div> #}
 		<div class="wrap">
-			<a class="wrap__delete" href="/users/delete?id={{user.id}}"><img class="ion-icon" src="../assets/svg/trash-outline.svg" alt="delete"/></a>
-			<button class="wrap__validate" type="submit">Update</button>
+			<a class="wrap__delete" href="/users/delete?id={{user.id}}" onclick="return confirm('Are you sure you want to delete ?')">
+				<img class="ion-icon" src="../assets/svg/trash-outline.svg" alt="delete"/>
+			</a>
+			<button class="wrap__validate" type="submit" disabled>Update</button>
 		</div>
 	</form>
 {% endblock %}
+

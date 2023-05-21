@@ -16,36 +16,68 @@
 	<div class="grid">
 		{% for product in products %}
 
-		{% if product.quantity > 0 %}
-			<div class="card">
-			{% if product.image == null %}
-				<img class="card__header" src="./assets/svg/no-image.svg" alt="no-image">
-			{% else %}
-				<img class="card__header" src="{{product.image}}" alt="{{product.name}}-image">
-			{% endif %}
-				<div class="card__body">
-					<h3>{{product.name}}</h3>
-					<div class="card__body__content">
-						<div class="card__body__content__infos">
-							<span>Price per unit :
-								{{product.price}}€</span>
-							<span>Quantity :
-								{{product.quantity}}
-							</span>
-						</div>
-						<div class="card__body__content__actions">
-							<a href="/products/delete?id={{product.id}}">
-								<img class="ion-icon" src="./assets/svg/trash-outline.svg" alt="delete-icon"/>
-							</a>
-							<a href="/products/update?id={{product.id}}">
-								<img class="ion-icon" src="./assets/svg/create-outline.svg" alt="modify-icon">
-							</a>
+			{% if product.quantity > 0 %}
+				<div class="card">
+					{% if product.image == null or product.image == "./assets/img/" %}
+						<img class="card__header" src="./assets/svg/no-image.svg" alt="no-image">
+					{% else %}
+						<img class="card__header" src="{{product.image}}" alt="{{product.name}}-image">
+					{% endif %}
+					<div class="card__body">
+						<h3>{{product.name}}</h3>
+						<div class="card__body__content">
+							<div class="card__body__content__infos">
+								<span>Price per unit :
+									{{product.price}}€</span>
+								<span>Quantity :
+									{{product.quantity}}
+								</span>
+							</div>
+							<div class="card__body__content__actions">
+								<a href="/products/delete?id={{product.id}}" onClick="return confirm('Are you sure you want to delete ?')">
+									<img class="ion-icon" src="./assets/svg/trash-outline.svg" alt="delete-icon"/>
+								</a>
+								<a href="/products/update?id={{product.id}}">
+									<img class="ion-icon" src="./assets/svg/create-outline.svg" alt="modify-icon">
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 			{% else %}
-		{% endif %}
+				<div class="card" id="opacity">
+					{% if product.image == null or product.image == "./assets/img/"%}
+						<img class="card__header" src="./assets/svg/no-image.svg" alt="no-image">
+					{% else %}
+						<img class="card__header" src="{{product.image}}" alt="{{product.name}}-image">
+					{% endif %}
+					<div class="card__body">
+						<h3>{{product.name}}</h3>
+						<div class="card__body__content">
+							<div class="card__body__content__infos">
+								<span>Price per unit :
+									{{product.price}}€</span>
+								{% if product.quantity <= 0 %}
+									<span>Quantity : 0</span>
+								{% else %}
+									<span>Quantity :
+										{{product.quantity}}
+									</span>
+								{% endif %}
+
+							</div>
+							<div class="card__body__content__actions">
+								<a href="/products/delete?id={{product.id}}" onClick="return confirm('Are you sure you want to delete ?')">
+									<img class="ion-icon" src="./assets/svg/trash-outline.svg" alt="delete-icon"/>
+								</a>
+								<a href="/products/update?id={{product.id}}">
+									<img class="ion-icon" src="./assets/svg/create-outline.svg" alt="modify-icon">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endif %}
 		{% endfor %}
 	</div>
 {% endblock %}

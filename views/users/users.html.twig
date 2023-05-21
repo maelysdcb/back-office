@@ -33,7 +33,7 @@
 							</span>
 						</div>
 						<div class="card__body__content__actions">
-							<a href="/users/delete?id={{user.id}}">
+							<a href="/users/delete?id={{user.id}}" onClick="return confirm('Are you sure you want to delete ?')">
 								<img class="ion-icon" src="./assets/svg/trash-outline.svg" alt="delete-icon"/>
 							</a>
 							<a href="/users/update?id={{user.id}}">

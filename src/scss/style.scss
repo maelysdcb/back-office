@@ -329,7 +329,9 @@ body {
         grid-template-rows: repeat(3, 1fr);
         gap: 5em;
         justify-items: stretch;
-
+        #opacity {
+            background: $red;
+        }
         .card {
             color: $font-color;
             border-radius: 0.5em;
@@ -384,18 +386,20 @@ body {
     color: $bg-color;
     width: 100%;
     height: 267px;
-    position: relative;
-
-    // img {
-    //     width: 100%;
-    //     height:267px;
-    //     object-fit: cover;
-    // }
+    overflow: hidden;
+    &__dashboard {
+        height:100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        img{
+            width: 40%;
+            align-self:flex-start;
+        }
+    }
     h1 {
         color: $bg-color;
-        position: absolute;
-        top: 45%;
-        left: 10%;
     }
 }
 
@@ -463,7 +467,7 @@ body {
         }
     }
 
-    #violet {
+    #purple {
         background: #C89AFE;
     }
 
@@ -508,12 +512,21 @@ form {
         margin: 0.5em 0;
 
         &__field {
-            &__item {
+            &__label {
                 padding: 1em 0;
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 gap: 1em;
+            }
+            &__item {
+                display: flex;
+                flex-direction: column;
+                span {
+                    font-size: 0.875em;;
+                    padding-top: 1em;
+                    align-self: flex-end;
+                }
             }
         }
 
@@ -545,7 +558,7 @@ form {
             color: $font-color;
             font-weight: 600;
             font-size: 1em;
-            background-color: $btn-color;
+            background-color: #e4e4e4c6;
             width: 120px;
             height: 45px;
             margin: 2em 0;

@@ -295,6 +295,9 @@ body {
   gap: 5em;
   justify-items: stretch;
 }
+.app-content .grid #opacity {
+  background: #FF3333;
+}
 .app-content .grid .card {
   color: #FAFAFA;
   border-radius: 0.5em;
@@ -340,13 +343,21 @@ body {
   color: #202024;
   width: 100%;
   height: 267px;
-  position: relative;
+  overflow: hidden;
+}
+.home__dashboard {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.home__dashboard img {
+  width: 40%;
+  align-self: flex-start;
 }
 .home h1 {
   color: #202024;
-  position: absolute;
-  top: 45%;
-  left: 10%;
 }
 
 .rounded {
@@ -404,7 +415,7 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-.grid__dashboard #violet {
+.grid__dashboard #purple {
   background: #C89AFE;
 }
 .grid__dashboard #blue {
@@ -441,12 +452,21 @@ form .wrap {
   justify-content: space-between;
   margin: 0.5em 0;
 }
-form .wrap__field__item {
+form .wrap__field__label {
   padding: 1em 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1em;
+}
+form .wrap__field__item {
+  display: flex;
+  flex-direction: column;
+}
+form .wrap__field__item span {
+  font-size: 0.875em;
+  padding-top: 1em;
+  align-self: flex-end;
 }
 form .wrap .radio {
   width: 380px;
@@ -473,7 +493,7 @@ form .wrap__validate {
   color: #FAFAFA;
   font-weight: 600;
   font-size: 1em;
-  background-color: #1AB76C;
+  background-color: rgba(228, 228, 228, 0.7764705882);
   width: 120px;
   height: 45px;
   margin: 2em 0;

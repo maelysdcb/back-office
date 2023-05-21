@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title></title>
+		<title>{{title}}</title>
 		<link rel="stylesheet" href="../css/style.css">
 	</head>
 	<body>
@@ -14,27 +14,27 @@
 		<div class="main-login">
 			<div class="wrap-left">
 				<h1>Welcome !</h1>
-				<form action="" method="POST">
+				<form action="/auth" method="POST" onSubmit="return validationForm()">
 					<div class="form-login">
 						<div class="form-login__field">
 							<div class="form-login__field__item">
-								<img class="ion-icon" src="../assets/svg/mail-outline.svg" alt="first-name">
-								<label for="Email">Email :</label>
+								<img class="ion-icon" src="../assets/svg/mail-outline.svg" alt="email-icon">
+								<label for="email">Email :</label>
 							</div>
-							<input type="text" name="email" placeholder="example@gmail.com">
+							<input type="text" name="email" placeholder="example@gmail.com" required>
 						</div>
 						<div class="form-login__field">
 							<div class="form-login__field__item">
-								<img class="ion-icon" src="../assets/svg/key-outline.svg" alt="last-name">
+								<img class="ion-icon" src="../assets/svg/key-outline.svg" alt="password-icon">
 								<label for="password">Password :</label>
 							</div>
 							<div class="form-login__field__forgotItem">
-								<input type="password" name="password" placeholder="*************">
+								<input type="password" name="password" placeholder="*************" required>
 								<a href="">Forgot passord ?</a>
 							</div>
 						</div>
 						<button>LOGIN</button>
-                        <span>Have an account ? <a href="#">Sign in</a></span>
+                        <span>Need an account ? <a href="#">Sign up now !</a></span>
 					</div>
 				</form>
 			</div>
@@ -42,6 +42,6 @@
 				<img src="../assets/svg/login.svg" alt="login-image">
 			</div>
 		</div>
+		<script src="../assets/js/validation.js"></script>
 	</body>
 </html>
-
