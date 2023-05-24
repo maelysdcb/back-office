@@ -32,7 +32,7 @@ class App
                 }
             } elseif ($uri == '/users/update' && isset($_GET['id'])) {
                 $controller = new UserController();
-                if (isset($_POST['id'])) {
+                if(isset($_POST['id'])) {
                     $controller->updateUser();
                 }
                 $controller->displayUser();

@@ -160,6 +160,7 @@ body {
   flex-direction: column;
 }
 .app-container .nav__sidebar__nav-img {
+  width: 85%;
   padding: 2.5em 2em;
 }
 .app-container .nav__sidebar__items ul {

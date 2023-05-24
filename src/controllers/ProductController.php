@@ -70,7 +70,7 @@ class ProductController extends BaseController
 
     public function updateProduct()
     {
-        if (!empty(trim($_POST['name'])) && !empty(trim($_POST['price'])) && !empty(trim($_POST['quantity'])) && !empty(trim($_POST['image']))) {
+        if (!empty(trim($_POST['name'])) && !empty(trim($_POST['price'])) && !empty(trim($_POST['image']))) {
             $updateProduct = $this->model->updateAllFields($_GET['id'], $_POST);
             header("Location:/products/update?id=" . $_GET['id']);
         }
@@ -89,7 +89,6 @@ class ProductController extends BaseController
         $productInfo = $this->model->getOne($_GET['id']);
 
         if ($productInfo->quantity <= 0) {
-            var_dump($productInfo->quantity);
             $removeQuantityto0 = $this->model->removeQuantityto0($_GET['id']);
             header("Location:/products/update?id=" . $_GET['id']);
         } else {

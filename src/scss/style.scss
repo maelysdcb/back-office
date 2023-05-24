@@ -163,8 +163,9 @@ body {
         flex-basis: 300px;
         display: flex;
         flex-direction: column;
-
+        
         &__nav-img {
+            width: 85%;
             padding: 2.5em 2em;
         }
 
