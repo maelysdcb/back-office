@@ -40,7 +40,7 @@ abstract class BaseModel
 
     public function getAll()
     {
-        $sql = "SELECT * FROM " . $this->table . " ORDER BY id DESC LIMIT 9";
+        $sql = "SELECT * FROM " . $this->table . " ORDER BY id DESC";
         $query = $this->_connexion->prepare($sql);
         $query->execute();
         return $query->fetchAll(\PDO::FETCH_OBJ);

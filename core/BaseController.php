@@ -17,14 +17,16 @@ class BaseController
         echo $this->twig->render($name, $context);
     }
 
-    public function outPutJson($array){
+    public function outPutJson($array)
+    {
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode($array);
     }
 
     public function checkInactivity()
     {
-        if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > 300) {
+        if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > 1000) {
             session_unset();
             header("Location:/login");
             exit;

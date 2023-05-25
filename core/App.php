@@ -16,7 +16,14 @@ class App
     public function run()
     {
         $uri = strtok($_SERVER['REQUEST_URI'], '?');
-        if(isset($_SESSION['user'])) {
+        if($uri == '/api/products'){
+            $controller = new ProductController();
+            $controller->displayList();
+        } else if($uri == '/api/products/consume' && isset($_GET['id'])){
+            $controller = new ProductController();
+            $controller->removeStock();
+        }
+        elseif(isset($_SESSION['user'])) {
             if ($uri == '/') {
                 $controller = new HomeController();
                 $controller->index();
@@ -39,13 +46,7 @@ class App
             } elseif ($uri == '/users/delete' && isset($_GET['id'])) {
                 $controller = new UserController();
                 $controller->deleteUser();
-            } else if($uri == '/api/products'){
-                $controller = new ProductController();
-                $controller->displayList();
-            } else if($uri == '/api/products/consume' && isset($_GET['id'])){
-                $controller = new ProductController();
-                $controller->removeStock();
-            } elseif ($uri == '/products') {
+            }  elseif ($uri == '/products') {
                 $controller = new ProductController();
                 $controller->displayList();
             } elseif ($uri == '/products/update' && isset($_GET['id'])) {
