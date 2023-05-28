@@ -85,7 +85,7 @@ class ProductController extends BaseController
 
     public function removeStock()
     {
-        $quantity = 10;
+        $quantity = 1;
         $productInfo = $this->model->getOne($_GET['id']);
 
         if ($productInfo->quantity <= 0) {
