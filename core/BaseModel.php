@@ -29,6 +29,15 @@ abstract class BaseModel
         return $query->fetch(\PDO::FETCH_OBJ);
     }
     
+    public function checkAuthAPI($data) {
+        $sql= "SELECT * FROM " . $this->table . " WHERE email=:email";
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(":email", $data["email"]);
+        $query->execute();
+        $result= $query->fetch(\PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getOne(int $id)
     {
         $sql = "SELECT * FROM " . $this->table . " WHERE id=:id";

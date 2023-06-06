@@ -20,18 +20,14 @@ class ProductController extends BaseController
     public function displayList()
     {
         $products = $this->model->getAll();
-        if ($_SERVER['REQUEST_URI'] == '/api/products') {
-            $this->outPutJson($products);
-        } else {
-            $title = "Products";
-            $button = "Add a product";
+        $title = "Products";
+        $button = "Add a product";
 
-            $this->render('products/list.html.twig', [
-                'title' => $title,
-                'button' => $button,
-                'products' => $products
-            ]);
-        }
+        $this->render('products/list.html.twig', [
+            'title' => $title,
+            'button' => $button,
+            'products' => $products
+        ]);
     }
 
     public function displayProduct()
@@ -81,19 +77,5 @@ class ProductController extends BaseController
         $quantity = 10;
         $addQuantity = $this->model->addQuantity($_GET['id'], $quantity);
         header("Location:/products/update?id=" . $_GET['id']);
-    }
-
-    public function removeStock()
-    {
-        $quantity = 1;
-        $productInfo = $this->model->getOne($_GET['id']);
-
-        if ($productInfo->quantity <= 0) {
-            $removeQuantityto0 = $this->model->removeQuantityto0($_GET['id']);
-            header("Location:/products/update?id=" . $_GET['id']);
-        } else {
-            $removeQuantity = $this->model->removeQuantity($_GET['id'], $quantity); 
-            echo $this->outPutJson($productInfo);
-        }
     }
 }

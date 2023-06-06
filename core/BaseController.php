@@ -17,6 +17,15 @@ class BaseController
         echo $this->twig->render($name, $context);
     }
 
+    public function decodeJson($array)
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: POST');
+        header('Access-Control-Allow-Headers: Content-Type');
+        $data = json_decode($array, true);
+        return $data;
+    }
+
     public function outPutJson($array)
     {
         header('Content-Type: application/json');

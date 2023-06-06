@@ -3,6 +3,7 @@
 namespace core;
 
 use LogicException;
+use src\controllers\ApiController;
 use src\controllers\ProductController;
 use src\controllers\HomeController;
 use src\controllers\LoginController;
@@ -16,12 +17,15 @@ class App
     public function run()
     {
         $uri = strtok($_SERVER['REQUEST_URI'], '?');
-        if($uri == '/api/products'){
-            $controller = new ProductController();
-            $controller->displayList();
+        if($uri == '/api/auth'){
+            $controller = new ApiController();
+            $controller->authAPI();
+        } elseif($uri == '/api/products'){
+            $controller = new ApiController();
+            $controller->displayListAPI();
         } else if($uri == '/api/products/consume' && isset($_GET['id'])){
-            $controller = new ProductController();
-            $controller->removeStock();
+            $controller = new ApiController();
+            $controller->removeStockAPI();
         }
         elseif(isset($_SESSION['user'])) {
             if ($uri == '/') {
